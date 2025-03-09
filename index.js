@@ -23,33 +23,7 @@ app.use( express.json() );
 
 // Rutas de la app
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/events', require('./routes/events'));
-
-//haz lo mismo con news
-app.use('/api/news', require('./routes/news'));
-//Rutas de empresas aliadas
-app.use('/api/empresas', require('./routes/empresas'));
-
-//Rutas de dcoentes
-app.use('/api/docente', require('./routes/docente'));
-
-//Rutas de sociedad
-app.use('/api/sociedad', require('./routes/sociedad'));
-
-//Rutas de centro
-app.use('/api/centro', require('./routes/centro'));
-
-//Rutas de centro
-app.use('/api/ucentro', require('./routes/ucentro'));
-
-//Rutas de centro
-app.use('/api/usociedad', require('./routes/usociedad'));
-
-//Rutas de sociedad
-app.use('/api/graduado', require('./routes/graduado'));
-
-//haz lo mismo con news
-app.use('/api/faqs', require('./routes/faqs'));
+app.use('/api/producto', require('./routes/producto'));
 
 //Escuchar peticiones
 app.listen( process.env.PORT, () => {

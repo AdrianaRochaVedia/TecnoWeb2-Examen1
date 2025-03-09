@@ -1,16 +1,15 @@
 const { Schema, model } = require('mongoose');
 
-const UsuarioSchema = Schema({
+const ProductoSchema = Schema({
         nombre: {
             type: String,
             required: true
         },
-        edad: {
+        precio: {
             type: Number,
             required: true,
-            unique: true
         },
-        ocupación: {
+        categoria: {
             type: String,
             required: true
         },
@@ -19,7 +18,7 @@ const UsuarioSchema = Schema({
             type: Boolean,
             default: false
         },
+    
+ });
 
-    });
-
-module.exports = model('Usuario', UsuarioSchema);
+module.exports = model('Producto', ProductoSchema);
