@@ -1,12 +1,12 @@
 /*
     Rutas de Usuarios / Auth
-    host + /api/auth
+    host + /api/usuario
 */
 
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { crearUsuario, getUsuario, getUsuarios, actualizarUsuario, eliminarUsuario } = require('../controllers/auth');
+const { crearUsuario, getUsuario, getUsuarios, actualizarUsuario, eliminarUsuario } = require('../controllers/usuario');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 
@@ -15,12 +15,11 @@ const router = Router();
 
 
 router.post(
-    '/new', 
+    '/', 
     [//middlewares
         check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-        // check('edad', 'La edad es obligatoria').
-        check('ocupacion', 'El password debe de ser de 6 caracteres').not().isEmpty(),
-        check('isDeleted', 'El campo isDeleted debe ser un booleano').isBoolean(),
+        check('edad', 'La edad es obligatoria').isInt(),
+        check('ocupacion', 'La ocupacion es obligatoria').not().isEmpty(),
         validarCampos
     ],
      crearUsuario 

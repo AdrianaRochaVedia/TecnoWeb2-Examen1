@@ -8,9 +8,8 @@ const UsuarioSchema = Schema({
         edad: {
             type: Number,
             required: true,
-            unique: true
         },
-        ocupación: {
+        ocupacion: {
             type: String,
             required: true
         },

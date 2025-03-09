@@ -22,7 +22,7 @@ app.use(express.static('public'));
 app.use( express.json() );
 
 // Rutas de la app
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/usuario', require('./routes/usuario'));
 app.use('/api/producto', require('./routes/producto'));
 
 //Escuchar peticiones

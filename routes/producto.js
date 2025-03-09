@@ -1,6 +1,6 @@
 /*
     Empresa Routes
-    /api/docente
+    /api/producto
 */
 const { Router } = require('express');
 const { check } = require('express-validator');
@@ -30,7 +30,7 @@ router.post(
     [
         // Validación de nombre
         check('nombre', 'El nombre es obligatorio').not().isEmpty(), 
-
+        check('precio', 'El precio debe ser un número flotante válido').isFloat(), 
         check('categoria', 'La categoria es obligatorio').not().isEmpty(), 
         validarCampos
     ],
