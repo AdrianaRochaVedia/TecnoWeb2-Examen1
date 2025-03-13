@@ -9,7 +9,7 @@ const { isDate } = require('../helpers/isDate');
 const { validarCampos } = require('../middlewares/validar-campos');
 
 const{ validarJWT } = require('../middlewares/validar-jwt');
-const { getProducto, getProductos, crearProducto, actualizarProducto, eliminarProducto } = require('../controllers/producto');     
+const { getProducto, getProductos, crearProducto, actualizarProducto, eliminarProducto, eliminarProductoFisico } = require('../controllers/producto');     
 
 const router = Router();
 
@@ -38,10 +38,13 @@ router.post(
 );
 
 
-//Actualizar empresa
+//Actualizar producto
 router.put('/:id', actualizarProducto);
 
-//Borrar empresa
+//Borrar producto logico
 router.patch('/:id', eliminarProducto);
+
+//Borrar producto fisico
+router.delete('/:id', eliminarProductoFisico);
 
 module.exports = router;

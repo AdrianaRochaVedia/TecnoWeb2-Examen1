@@ -155,10 +155,43 @@ const eliminarProducto = async (req, res = response) => {
     }
 };
 
+// Eliminación lógica de un producto
+// Eliminación física de un producto
+
+const eliminarProductoFisico = async (req, res = response) => {
+    const { id } = req.params; // ID del producto a eliminar
+
+    try {
+        // Buscar el centro por ID
+        const producto = await Producto.findById(id);
+
+        if (!producto) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Producto no encontrado'
+            });
+        }
+
+        // Realizar la eliminación física
+        await Producto.findByIdAndDelete(id);
+
+        res.json({
+            ok: true,
+            msg: 'Producto eliminado físicamente',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Error al eliminar el producto'
+        });
+    }
+};
 module.exports = {
     getProducto,
     getProductos,
     crearProducto,
     actualizarProducto,
-    eliminarProducto
+    eliminarProducto,
+    eliminarProductoFisico
 };
