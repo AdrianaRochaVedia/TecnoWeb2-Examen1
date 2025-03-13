@@ -6,7 +6,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { crearUsuario, getUsuario, getUsuarios, actualizarUsuario, eliminarUsuario } = require('../controllers/usuario');
+const { crearUsuario, getUsuario, getUsuarios, actualizarUsuario, eliminarUsuario, eliminarUsuarioFisico } = require('../controllers/usuario');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 
@@ -45,12 +45,14 @@ router.get('/:id', getUsuario);
 //Obtener docentes
 router.get('/', getUsuarios);
 
-//Actualizar empresa
+//Actualizar usuaario
 router.put('/:id', actualizarUsuario);
 
-//Borrar empresa
+//Borrar usuario logico
 router.patch('/:id', eliminarUsuario);
 
+//Borrar usuario fisico
+router.delete('/:id', eliminarUsuarioFisico);
 //Para crear un nuevo usuario post
 
 module.exports = router;

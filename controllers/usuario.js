@@ -143,32 +143,45 @@ const eliminarUsuario = async (req, res = response) => {
     }
 };
 
+// Eliminación lógica de un producto
+const eliminarUsuarioFisico = async (req, res = response) => {
+    const { id } = req.params; // ID del producto a eliminar
 
-//Revalidar token
-// const revalidarToken = async(req, res = response) => {
-//     const{ uid, name } = req;
+    try {
+        // Buscar el usuario por ID
+        const usuario = await Usuario.findById(id);
 
-//     //Generar JWT Jason Web Token y retornarlo en esta peticion
+        if (!usuario) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Usuario no encontrado'
+            });
+        }
 
-//     const token = await generarJWT( uid, name ); 
+        // Realizar la eliminación lógica
+        // Realizar la eliminación física
+        await Usuario.findByIdAndDelete(id);
 
-//     res.json({
-//         ok: true,
-//         uid,
-//         name,
-//         token,
-//         rol
-//     })
-// }
-
+        res.json({
+            ok: true,
+            msg: 'Usuario eliminado físicamente',
+            usuario
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Error al eliminar el usuario'
+        });
+    }
+};
 
 
 module.exports = { 
     crearUsuario,
-    // loginUsuario,
-    // revalidarToken,
     getUsuarios,
     getUsuario,
     actualizarUsuario,
-    eliminarUsuario
+    eliminarUsuario,
+    eliminarUsuarioFisico
 }
